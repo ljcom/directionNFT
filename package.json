@@ -1,0 +1,17 @@
+{
+    "name": "directionnft",
+    "version": "1.0.0",
+    "scripts": {
+      "compile": "npx hardhat compile",
+      "deploy": "npx hardhat run scripts/deploy.js --network localhost",
+      "upgrade": "npx hardhat run scripts/upgrade.js --network localhost"
+    },
+    "devDependencies": {
+      "hardhat": "^2.22.0",
+      "ethers": "^5.7.2",
+      "@openzeppelin/hardhat-upgrades": "^1.28.0",
+      "@openzeppelin/contracts-upgradeable": "^5.0.1",
+      "@nomiclabs/hardhat-ethers": "^2.2.1",
+      "dotenv": "^16.0.0"
+    }
+  }
