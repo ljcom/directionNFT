@@ -1,22 +1,20 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.19;
+pragma solidity ^0.8.22;
 
 import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
-contract IdentityModule is Initializable, AccessControlUpgradeable {
+abstract contract IdentityModule is AccessControlUpgradeable {
+    bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
+
     mapping(address => bytes32) public didHash;
     mapping(address => bool) public whitelisted;
-
-    bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
 
     event DIDRegistered(address indexed user, bytes32 did);
     event WhitelistUpdated(address indexed user, bool status);
 
-    function initializeIdentity() public initializer {
-        __AccessControl_init();
-        _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
-        _setupRole(ADMIN_ROLE, msg.sender);
+    function initializeIdentity() public virtual {
+        _grantRole(DEFAULT_ADMIN_ROLE, msg.sender); // ✅ Ganti dengan _grantRole
+        _grantRole(ADMIN_ROLE, msg.sender);         // ✅ Ganti juga
     }
 
     function registerDID(address user, bytes32 did) external onlyRole(ADMIN_ROLE) {
