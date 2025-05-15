@@ -47,7 +47,7 @@ describe("DirectionNFT", function () {
     const lockedBefore = await contract.lockedFunds(user1.address);
     expect(lockedBefore).to.be.deep.equal(amount);
   
-    await contract.releaseFunds(user1.address, amount);
+    await contract.releaseFunds(user1.address, amount); 
   
     const lockedAfter = await contract.lockedFunds(user1.address);
     expect(lockedAfter.eq(0)).to.be.true;
