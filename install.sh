@@ -1,6 +1,6 @@
 npm install
 
-npx hardhat node
+npx hardhat node ## different terminal
 
 npx hardhat clean
 npx hardhat compile
